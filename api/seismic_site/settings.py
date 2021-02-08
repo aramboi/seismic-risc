@@ -28,6 +28,7 @@ class Base(Configuration):
     SECRET_KEY = values.Value()
 
     ALLOWED_HOSTS = []
+    CORS_ORIGIN_ALLOW_ALL = False
     SITE_URL = values.Value()
     SITE_ID = 1
 
@@ -47,6 +48,7 @@ class Base(Configuration):
         "rest_framework",
         "storages",
         "taggit",
+        "taggit_serializer",
         "corsheaders",
         "ckeditor",
         "ckeditor_uploader",
@@ -179,6 +181,8 @@ class Test(Base):
 class Prod(Base):
     DEBUG = False
     ALLOWED_HOSTS = values.ListValue(default=[".code4.ro"])
+    CORS_ORIGIN_WHITELIST = values.ListValue(default=[".code4.ro"])
+    CORS_ORIGIN_REGEX_WHITELIST = values.ListValue(default=["*.code4.ro"])
 
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_USE_TLS = True

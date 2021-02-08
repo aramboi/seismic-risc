@@ -2,7 +2,7 @@ name: "Py CodeQL analysis"
 
 on:
   push:
-    branches: [develop, master]
+    branches: [develop, main]
   pull_request:
     branches: [develop]
     paths:
@@ -16,7 +16,7 @@ on:
     - cron: '15 7 * * 2'
 
 jobs:
-  analyze_js:
+  analyze_py:
     name: Analyze code
     runs-on: ubuntu-latest
 

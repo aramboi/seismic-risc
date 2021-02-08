@@ -7,7 +7,11 @@ from django.urls import path, include
 
 from rest_framework import routers
 
-from buildings.views import BuildingViewSet, building_search
+from buildings.views import (
+    BuildingViewSet,
+    building_search,
+    statistics,
+)
 from pages.views import PagesViewSet
 from blog.views import PostViewSet
 
@@ -53,8 +57,13 @@ urlpatterns = (
         path(
             "api/v1/buildings/search", building_search, name="building_search"
         ),
+        path("api/v1/statistics/", statistics, name="statistics"),
         path("i18n/", include("django.conf.urls.i18n")),
         path("api/v1/", include(router.urls)),
+        path(
+            "api-auth/",
+            include("rest_framework.urls", namespace="rest_framework"),
+        ),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 )
